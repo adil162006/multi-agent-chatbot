@@ -38,5 +38,17 @@ class LoadStreamlitUI:
                 # Validate API key
                 if not self.user_controls["TAVILY_API_KEY"]:
                     st.warning("⚠️ Please enter your TAVILY_API_KEY key to proceed. Don't have? refer : https://app.tavily.com/home")
-
+            
+            if self.user_controls['selected_usecase']=="AI News":
+                st.subheader("📰 AI News Explorer ")
+                
+                with st.sidebar:
+                    time_frame = st.selectbox(
+                        "📅 Select Time Frame",
+                        ["Daily", "Weekly", "Monthly"],
+                        index=0
+                    )
+                if st.button("🔍 Fetch Latest AI News", use_container_width=True):
+                    st.session_state.IsFetchButtonClicked = True
+                    st.session_state.timeframe = time_frame
         return self.user_controls
